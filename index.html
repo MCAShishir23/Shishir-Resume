@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shishir Srivastava - AI Agent & Automation Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            line-height: 1.6;
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .bg-animation span:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+
+        .bg-animation span:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .bg-animation span:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .bg-animation span:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img i {
+            font-size: 70px;
+            color: white;
+        }
+
+        .name {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: nameUnderline 3s ease-in-out infinite;
+        }
+
+        @keyframes nameUnderline {
+            0%, 100% { width: 0; left: 50%; }
+            50% { width: 100%; left: 0; }
+        }
+
+        .title {
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            color: #ecf0f1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+            color: #ecf0f1;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-item i {
+            font-size: 1.2em;
+            color: #ffffff;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px 30px;
+            border-right: 3px solid var(--primary-color);
+        }
+
+        .content {
+            padding: 40px 50px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.6em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-1);
+            animation: titleUnderline 3s ease-in-out infinite;
+        }
+
+        @keyframes titleUnderline {
+            0%, 100% { width: 50px; }
+            50% { width: 100%; }
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        .profile-summary {
+            text-align: justify;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before, .education-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(155, 89, 182, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .experience-item:hover::before, .education-item:hover::before, .project-item:hover::before {
+            opacity: 1;
+        }
+
+        .experience-item:hover, .education-item:hover, .project-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .job-title, .project-title {
+            font-size: 1.3em;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .company, .tech-stack {
+            font-size: 1.1em;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .responsibilities, .achievements, .project-details {
+            margin-top: 15px;
+        }
+
+        .responsibilities h4, .achievements h4, .project-details h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-1);
+            transition: width 0.4s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            border-color: var(--primary-color);
+        }
+
+        .skill-item:hover::before {
+            width: 100%;
+        }
+
+        .skill-glow {
+            animation: skillPulse 3s ease-in-out infinite;
+        }
+
+        .skill-glow:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes skillPulse {
+            0%, 100% {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(52, 152, 219, 0.2);
+            }
+        }
+
+        .skill-icon {
+            background: var(--gradient-1);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+            transition: all 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-item:hover .skill-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .skill-icon i {
+            color: white;
+            font-size: 1.3em;
+        }
+
+        .skill-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 6px;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+
+        .skill-item:hover .skill-name {
+            color: var(--primary-color);
+        }
+
+        .skill-level {
+            background: #e9ecef;
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .tech-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            background: var(--gradient-1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .tech-badge:hover::before {
+            left: 100%;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #2980b9;
+        }
+
+        .achievement-badge {
+            background: var(--gradient-2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .languages {
+            display: flex;
+            gap: 15px;
+        }
+
+        .language-item {
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .language-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .language-level {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .attributes-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .attributes-list li {
+            padding: 10px 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s;
+        }
+
+        .attributes-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .attributes-list li i {
+            color: var(--primary-color);
+        }
+
+        .certifications-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .certifications-list li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .certifications-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            margin: 0 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--secondary-color);
+            font-size: 0.9em;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .timeline-content {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.2);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-date {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 3px solid var(--primary-color);
+            }
+
+            .name {
+                font-size: 2em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-btn {
+                top: 10px;
+                right: 10px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .stats-container {
+                flex-direction: column;
+            }
+
+            .stat-item {
+                margin: 5px 0;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .download-btn {
+                display: none;
+            }
+            .skill-item, .experience-item, .education-item, .project-item {
+                break-inside: avoid;
+            }
+            .bg-animation {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <button class="download-btn" onclick="downloadPDF()">
+        <i class="fas fa-download"></i>
+        Download CV
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="profile-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1 class="name">Shishir Srivastava</h1>
+                <p class="title">AI Agent Developer & Automation Expert</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mcashishir23@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 8090166716</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/MCAShishir23</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/shishir-srivastava</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Core Skills
+                    </h2>
+                    <div class="skills-grid">
+                        <div class="skill-item skill-glow">
+                            <div class="skill-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="skill-content">
+                                <div class="skill-name">AI Agent Development</div>
+                                <div class="skill-level">
+                                    <div class="skill-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item skill-glow">
+                            <div class="skill-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="skill-content">
+                                <div class="skill-name">Process Automation</div>
+                                <div class="skill-level">
+                                    <div class="skill-bar" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item skill-glow">
+                            <div class="skill-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="skill-content">
+                                <div class="skill-name">N8N Automation</div>
+                                <div class="skill-level">
+                                    <div class="skill-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item skill-glow">
+                            <div class="skill-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="skill-content">
+                                <div class="skill-name">Frontend Development</div>
+                                <div class="skill-level">
+                                    <div class="skill-bar" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item skill-glow">
+                            <div class="skill-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div class="skill-content">
+                                <div class="skill-name">API Integration</div>
+                                <div class="skill-level">
+                                    <div class="skill-bar" style="width: 93%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item skill-glow">
+                            <div class="skill-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="skill-content">
+                                <div class="skill-name">LLM Development</div>
+                                <div class="skill-level">
+                                    <div class="skill-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-code"></i>
+                        Technical Skills
+                    </h2>
+                    <div class="tech-skills">
+                        <div class="tech-badge">
+                            <i class="fab fa-react"></i>
+                            <span>React.js</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-database"></i>
+                            <span>Supabase</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-robot"></i>
+                            <span>LangChain</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-brain"></i>
+                            <span>OpenAI API</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-phone"></i>
+                            <span>Twilio</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-microphone"></i>
+                            <span>11Labs</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>AutoGen</span>
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fas fa-code-branch"></i>
+                            <span>Git</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-trophy"></i>
+                        Achievements
+                    </h2>
+                    <ul class="certifications-list">
+                        <li><span class="achievement-badge">🏆</span> Reduced manual support workload by 70% through AI automation</li>
+                        <li><span class="achievement-badge">🏆</span> Developed 24/7 customer service AI agents</li>
+                        <li><span class="achievement-badge">🏆</span> Streamlined HR operations by 60% with automation</li>
+                        <li><span class="achievement-badge">🏆</span> Created AI systems that improved customer satisfaction by 40%</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-language"></i>
+                        Languages
+                    </h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <div class="language-name">English</div>
+                            <div class="language-level">Professional</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">Hindi</div>
+                            <div class="language-level">Native</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-heart"></i>
+                        Attributes
+                    </h2>
+                    <ul class="attributes-list">
+                        <li><i class="fas fa-check-circle"></i> Problem Solver</li>
+                        <li><i class="fas fa-check-circle"></i> Innovative Thinker</li>
+                        <li><i class="fas fa-check-circle"></i> Detail Oriented</li>
+                        <li><i class="fas fa-check-circle"></i> Quick Learner</li>
+                        <li><i class="fas fa-check-circle"></i> Team Player</li>
+                        <li><i class="fas fa-check-circle"></i> Time Management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-circle"></i>
+                        About Me
+                    </h2>
+                    <p class="profile-summary">
+                        Innovative AI Agent Developer and Automation Expert with a proven track record of designing and deploying intelligent, autonomous systems that transform business operations. With expertise in leveraging cutting-edge technologies including LLMs, LangChain, AutoGen, OpenAI APIs, 11Labs, Twilio, and N8N, I specialize in building scalable AI solutions and comprehensive automation workflows. My technical proficiency in React.js, JavaScript, HTML, and CSS enables me to create seamless, responsive web interfaces that enhance user experience. I have a demonstrated ability to automate complex business processes, significantly reduce manual workloads, and deliver measurable improvements in operational efficiency. Passionate about pushing the boundaries of AI and automation to solve real-world business challenges.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-bar"></i>
+                        Professional Stats
+                    </h2>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">AI Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">70%</div>
+                            <div class="stat-label">Workload Reduction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">AI Support</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">40%</div>
+                            <div class="stat-label">Efficiency Increase</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-briefcase"></i>
+                        Work Experience
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-title">AI Agent Developer & Automation Expert</div>
+                                <div class="timeline-date">PhiTech Labs Pvt. Ltd. | 2025</div>
+                                <ul>
+                                    <li>Developed and deployed AI-powered inbound calling agents using n8n, Twilio, 11Labs, and OpenAI API, automating call routing, speech recognition, and real-time voice synthesis.</li>
+                                    <li>Built custom automation workflows to integrate voice assistants with CRM systems, reducing manual support workload by 70% and enabling 24/7 customer service.</li>
+                                    <li>Designed intelligent NLP-driven responses for customer queries, improving customer satisfaction and support efficiency.</li>
+                                    <li>Created automated lead generation systems that increased qualified leads by 45%.</li>
+                                    <li>Implemented AI-driven quality assurance systems for call auditing, reducing manual review time by 80%.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-title">Frontend Developer (Internship)</div>
+                                <div class="timeline-date">KN IT SELL Pvt. Ltd. | 2024 – 2025</div>
+                                <ul>
+                                    <li>Developed an internal HR management system using React.js, Node.js, and Supabase, streamlining employee data handling for remote teams.</li>
+                                    <li>Enabled efficient CRUD operations for employee records, reducing manual record keeping errors and enhancing data accuracy.</li>
+                                    <li>Automated HR workflows, improving productivity and supporting dynamic dashboards for HR operations.</li>
+                                    <li>Implemented real-time notifications and automated report generation, saving 10+ hours of manual work weekly.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Education
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-title">Master of Computer Application (MCA)</div>
+                                <div class="timeline-date">Maharana Pratap Engineering College, Kanpur | 2022 – 2024</div>
+                                <ul>
+                                    <li>Specialized in AI and Machine Learning applications</li>
+                                    <li>Completed thesis on "Automated Business Process Optimization using AI Agents"</li>
+                                    <li>Participated in national-level hackathons and coding competitions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-title">Bachelor of Computer Application (BCA)</div>
+                                <div class="timeline-date">Dayanand Academy of Management Studies, Kanpur | 2018 – 2021</div>
+                                <ul>
+                                    <li>Focus on Web Development and Database Management</li>
+                                    <li>President of the Computer Science Club</li>
+                                    <li>Organized workshops on emerging technologies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Featured Projects
+                    </h2>
+                    <div class="project-item">
+                        <div class="project-title">AI-Powered LinkedIn Job Finder</div>
+                        <div class="tech-stack">Tech Stack: N8N, LinkedIn API, Google Gemini API, Google Sheet</div>
+                        <div class="project-details">
+                            <ul>
+                                <li>Intelligent filtering and ranking by leveraging AI to analyze job descriptions against user-defined criteria, delivering a curated list of highly relevant opportunities.</li>
+                                <li>Automated application process for matching positions, increasing application efficiency by 300%.</li>
+                                <li>Implemented real-time notifications for new job matches based on user preferences.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MCAShishir23/AI-Job-Finder-LinkedIn" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Project
+                        </a>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-title">Multi-Agent Content Automation System</div>
+                        <div class="tech-stack">Tech Stack: LangChain, LangGraph, OpenAI API (GPT-4), N8N Automation Tool</div>
+                        <div class="project-details">
+                            <ul>
+                                <li>Implemented specialized AI agents: a Research Agent (Tavily AI) for data gathering, a Content Writer Agent (GPT-4) for article generation, and a Social Media Agent for cross-platform content distribution.</li>
+                                <li>Automated content creation workflow, reducing content production time by 75%.</li>
+                                <li>Developed sentiment analysis to optimize content engagement across platforms.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MCAShishir23/multi-agent-content-automation" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Project
+                        </a>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-title">Automated B2B Lead Generation from Events</div>
+                        <div class="tech-stack">Tech Stack: N8N, Web Scraping API, Google Gemini</div>
+                        <div class="project-details">
+                            <ul>
+                                <li>Streamlined the B2B lead generation process by automating the manual task of collecting potential client contacts, significantly reducing research time and providing a consistent stream of leads for outreach campaigns.</li>
+                                <li>Implemented AI-driven lead scoring system, prioritizing high-value prospects.</li>
+                                <li>Integrated with CRM systems for seamless lead management and follow-up automation.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MCAShishir23/One-of-the-ways-to-generate-leads-for-a-B2B-company-is-by-attending-events." class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Project
+                        </a>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-title">AI-Powered Call Auditing and Quality Assurance Agent</div>
+                        <div class="tech-stack">Tech Stack: LangChain, AssemblyAI API (or similar STT), 11Labs, Twillio, Gemini</div>
+                        <div class="project-details">
+                            <ul>
+                                <li>Intelligent analysis by leveraging LLMs to evaluate calls on key metrics such as customer sentiment, script adherence, and problem resolution.</li>
+                                <li>Automated quality scoring system, reducing manual audit time by 80%.</li>
+                                <li>Generated actionable insights for agent training and performance improvement.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MCAShishir23/Call-Audit-Ai-Agent" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Project
+                        </a>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-title">AI-Powered Inbound Calling Agent</div>
+                        <div class="tech-stack">Tech Stack: LangChain, AssemblyAI API (or similar STT), 11Labs, Twillio, Gemini</div>
+                        <div class="project-details">
+                            <ul>
+                                <li>Implemented real-time speech-to-text and text-to-speech conversion to enable fluid, human-like conversations, utilizing the LLM to understand user intent and provide intelligent, context-aware responses.</li>
+                                <li>Automated the inbound call handling process to achieve 24/7 availability, significantly reducing manual support workload and enhancing overall customer service efficiency.</li>
+                                <li>Developed intelligent call routing system based on customer needs and agent expertise.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MCAShishir23/AI-Calling-Agent-Using-N8N-Twillio-11Labs-Open-Ai" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Project
+                        </a>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-title">Employee Management System (EMS)</div>
+                        <div class="tech-stack">Tech Stack: React, NodeJS, Supabase</div>
+                        <div class="project-details">
+                            <ul>
+                                <li>Developed a comprehensive Employee Management System (EMS) using React.js, Node.js, and Supabase to streamline core HR operations like employee data, attendance, and leave management.</li>
+                                <li>Implemented automated payroll calculation and report generation features.</li>
+                                <li>Created real-time dashboard for HR analytics and decision-making.</li>
+                            </ul>
+                        </div>
+                        <a href="https://github.com/MCAShishir23/KN-EMS" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate skill bars on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        const skillsSection = document.querySelector('.skills-grid');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+        
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const finalValue = stat.innerText;
+                        const isPercentage = finalValue.includes('%');
+                        const isPlus = finalValue.includes('+');
+                        const isTime = finalValue.includes('/');
+                        let numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                        let currentValue = 0;
+                        const increment = numericValue / 50;
+                        
+                        const updateCounter = () => {
+                            if (currentValue < numericValue) {
+                                currentValue += increment;
+                                if (isPercentage) {
+                                    stat.innerText = Math.ceil(currentValue) + '%';
+                                } else if (isPlus) {
+                                    stat.innerText = Math.ceil(currentValue) + '+';
+                                } else if (isTime) {
+                                    stat.innerText = '24/7';
+                                } else {
+                                    stat.innerText = Math.ceil(currentValue);
+                                }
+                                setTimeout(updateCounter, 30);
+                            } else {
+                                stat.innerText = finalValue;
+                            }
+                        };
+                        
+                        updateCounter();
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        const statsSection = document.querySelector('.stats-container');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // Download PDF function
+        function downloadPDF() {
+            // In a real implementation, this would generate and download a PDF
+            // For now, we'll just show an alert
+            alert('PDF download functionality would be implemented here. In a real application, this would generate a PDF version of the CV.');
+        }
+    </script>
+</body>
+</html>
